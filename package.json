@@ -1,6 +1,6 @@
 {
     "name": "@pokimane-safety/discord-reaction-drafter",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Randomly drafts Discord message reactors.",
     "type": "commonjs",
     "main": "src/index.js",
