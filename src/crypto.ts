@@ -24,25 +24,27 @@ export class Crypto {
         }
 
         const { bytesNeeded, mask } = this._calculateParameters(range);
-        const bytes = await this._randomBytes(bytesNeeded);
+        let randomValue: number;
 
-        let randomValue = 0;
-        /* Turn the random bytes into an integer, using bitwise operations. */
-        for (let i = 0; i < bytesNeeded; i++) {
-            randomValue |= bytes[i] << (8 * i);
-        }
-        /* Apply bit mask */
-        randomValue = randomValue & mask;
+        do {
+            randomValue = 0;
+            const bytes = await this._randomBytes(bytesNeeded);
 
-        if (randomValue <= range) {
-            /* We've been working with 0 as a starting point,
-             *so we need to add the `minimum` here. */
-            return minimum + randomValue;
-        } else {
+            /* Turn the random bytes into an integer, using bitwise operations. */
+            for (let i = 0; i < bytesNeeded; i++) {
+                randomValue |= bytes[i] << (8 * i);
+            }
+
+            /* Apply bit mask */
+            randomValue = randomValue & mask;
+
             /* Outside of the acceptable range, throw it away and try again.
              * We don't try any modulo tricks as this would introduce bias. */
-            return this.randomNumberSafe(minimum, maximum);
-        }
+        } while (randomValue > range);
+
+        /* We've been working with 0 as a starting point,
+         *so we need to add the `minimum` here. */
+        return minimum + randomValue;
     }
 
     /**

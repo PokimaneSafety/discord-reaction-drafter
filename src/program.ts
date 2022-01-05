@@ -214,7 +214,7 @@ export class Program {
 
         const reactorProgress = new Progress.SingleBar({}, Progress.Presets.rect);
         console.log('Loading reactors for reaction %s', reaction.emoji.identifier);
-        reactorProgress.start(reaction.count || 0, 0);
+        reactorProgress.start(reaction.count ?? 0, 0);
 
         const userSet = new Set<Discord.User>();
         const SIZE = 100;
