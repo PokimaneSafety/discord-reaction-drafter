@@ -1,0 +1,36 @@
+{
+    "eslint.validate": ["javascript", "typescript"],
+    "eslint.options": {
+        "cache": true
+    },
+    "eslint.lintTask.enable": true,
+    "eslint.onIgnoredFiles": "off",
+    "eslint.packageManager": "yarn",
+
+    "files.trimTrailingWhitespace": false,
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/node_modules": true
+    },
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "javascript.preferences.quoteStyle": "single",
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.updateImportsOnFileMove.enabled": "never",
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    }
+}

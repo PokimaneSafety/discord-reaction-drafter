@@ -1,0 +1,43 @@
+{
+    "dictionaries": ["typescript", "softwareTerms", "node", "en_US", "npm", "misc", "filetypes", "bash"],
+    "ignorePaths": [
+        "node_modules" /* Dependencies */,
+        "build" /* Compiled */,
+        "bin" /* Binaries */,
+        "coverage" /* Test Coverage */,
+        "logs" /* Logs */,
+        "*.log" /* Logfiles */,
+        "report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json" /* Crash Reports */,
+        ".env*" /* Environment Variables */,
+        "yarn.lock" /* Dependency Lockfile */,
+        "*.tsbuildinfo" /* TypeScript Incremental Cache */,
+        ".eslintcache" /* ESLint Incremental Cache */,
+        "*rc.?(c)js" /* Configuration Files */,
+        "*.json" /* Package Manifest + TypeScript Config */,
+        ".vscode" /* VS Code */,
+        ".husky" /* Husky Scripts */,
+        ".github/workflows" /* Workflows */,
+        ".git" /* Source Control Objects */,
+        ".cspell.json" /* Spelling Configuration */,
+        "generated" /* Generated Files */,
+        "Dockerfile" /* Docker */
+    ],
+    "ignoreRegExpList": [
+        "/```[\\w\\W]*?```/" /* Multi-line Code Blocks */,
+        "/~~~[\\w\\W]*?~~~/" /* Strike-through */,
+        "/``[\\w\\W]*?``/" /* Inline Code Blocks */,
+        "/`[^`]*`/" /* Inline Code */,
+        "\\(#.+?\\)" /* Anchors */,
+        "/\\S+\\.(?:com|net|org)/" /* Websites */
+    ],
+    "language": "en",
+    "overrides": [
+        {
+            "filename": "./src/**/*.[jt]s?(x)",
+            "ignoreRegExpList": ["/@[a-z]+/" /* Decorators */, "/#(end)?region/" /* Regions */],
+            "includeRegExpList": ["/\\/\\*[\\s\\S]*?\\*\\/|([^\\\\:]|^)\\/\\/.*$/", "/(\\/\\/[^\\n\\r]*[\\n\\r]+)/"]
+        }
+    ],
+    "version": "0.2",
+    "words": ["pokimane", "robinlemon", "respawn"]
+}
