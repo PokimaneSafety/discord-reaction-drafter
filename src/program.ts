@@ -18,10 +18,10 @@ export class Program {
         while (true) {
             const { token } = await Inquirer.prompt<{ token: string }>([
                 {
-                    // mask: '*',
+                    mask: '*',
                     message: 'Discord Token',
                     name: 'token',
-                    type: 'input',
+                    type: 'password',
                     validate(input) {
                         return /[\d.a-z]+/i.test(input);
                     },
