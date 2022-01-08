@@ -261,10 +261,9 @@ export class Program {
                 break;
             }
 
-            let hasRoles = false;
             let position = 0;
             let winner: Discord.GuildMember;
-
+            let hasRoles = false;
             while (!hasRoles) {
                 position = await Crypto.randomNumberSafe(0, userList.length - 1);
 
@@ -276,8 +275,34 @@ export class Program {
                 }
 
                 winner = member;
-                hasRoles = member.roles.cache.size > 0;
+
+                // All members will have @everyone, check if they have accepted the rules too.
+                hasRoles = member.roles.cache.size > 1;
             }
+
+            const roles: Discord.Role[] = [];
+            for (const role of winner!.roles.cache.values()) {
+                // Role headers
+                if (role.name.startsWith('━')) {
+                    continue;
+                }
+
+                // Permission roles
+                if (role.name.endsWith('Permissions')) {
+                    continue;
+                }
+
+                if (role.name === '@everyone') {
+                    continue;
+                }
+
+                roles.push(role);
+            }
+
+            const roleStr = roles
+                .sort((a, b) => b.position - a.position)
+                .map((r) => r.name)
+                .join(', ');
 
             console.log(
                 [
@@ -285,10 +310,7 @@ export class Program {
                     'New Winner pokiWow',
                     `Tag: ${winner!.user.tag}`,
                     `ID: ${winner!.id}`,
-                    `Roles: ${winner!.roles.cache
-                        .map((r) => r.name)
-                        .filter((n) => !n.startsWith('━'))
-                        .join(', ')}`,
+                    `Roles: ${roleStr}`,
                     `Position: ${position}`,
                     '',
                 ].join('\n')
