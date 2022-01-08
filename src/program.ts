@@ -262,13 +262,13 @@ export class Program {
             }
 
             let hasRoles = false;
-            let offset = 0;
+            let position = 0;
             let winner: Discord.GuildMember;
 
             while (!hasRoles) {
-                offset = await Crypto.randomNumberSafe(0, userList.length - 1);
+                position = await Crypto.randomNumberSafe(0, userList.length - 1);
 
-                const user = userList[offset];
+                const user = userList[position];
                 const member = guildMembers.find((member) => member.user?.id === user?.id);
                 if (!member) {
                     console.warn('Error finding member %s (%s)', user.tag, user.id);
@@ -289,7 +289,7 @@ export class Program {
                         .map((r) => r.name)
                         .filter((n) => !n.startsWith('━'))
                         .join(', ')}`,
-                    `Position: ${offset}`,
+                    `Position: ${position}`,
                     '',
                 ].join('\n')
             );
