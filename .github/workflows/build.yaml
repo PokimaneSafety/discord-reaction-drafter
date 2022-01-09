@@ -70,6 +70,20 @@ jobs:
                   key: ${{ runner.os }}-${{ hashFiles('scripts/build.sh') }}
                   path: $HOME/.nexe
 
+            - name: Rename Binaries
+              if: steps.release.outputs.is_release == 'true'
+              run: |
+                  set -x
+                  VERSION="${{ steps.release.outputs.tag }}"
+                  WIN_32_EXTENSION=".exe"
+                  for asset in ./bin/*; do
+                      destination="${asset/%$WIN_32_EXTENSION}-$VERSION"
+                      if [[ $asset == *"$WIN_32_EXTENSION" ]]; then
+                          destination+="$WIN_32_EXTENSION"
+                      fi
+                      mv $asset $destination
+                  done
+
             - name: Upload Binaries
               if: steps.release.outputs.is_release == 'true'
               run: |
