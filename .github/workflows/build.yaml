@@ -74,11 +74,17 @@ jobs:
               if: steps.release.outputs.is_release == 'true'
               run: |
                   set -x
+                  VERSION="${{ steps.release.outputs.tag }}"
+                  WIN_32_EXTENSION=".exe"
                   assets=()
                   for asset in ./bin/*; do
-                    assets+=("-a" "$asset")
+                      destination="${asset/%$WIN_32_EXTENSION}-$VERSION"
+                      if [[ $asset == *"$WIN_32_EXTENSION" ]]; then
+                          destination+="$WIN_32_EXTENSION"
+                      fi
+                      mv $asset $destination
+                      assets+=("-a" "$destination")
                   done
-                  TAG="${{ steps.release.outputs.tag }}"
-                  hub release create "${assets[@]}" -m "$TAG" "$TAG"
+                  hub release create "${assets[@]}" -m "$VERSION" "$VERSION"
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
