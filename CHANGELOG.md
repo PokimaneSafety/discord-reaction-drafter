@@ -1,6 +1,6 @@
 # Changelog for Discord Reaction Drafter
 
-## Unreleased
+## v1.0.1 - 9th January 2022
 
 -   Minor: Adds performance improvements to the `Crypto#randomNumberSafe` method. ([#6](https://github.com/PokimaneSafety/discord-reaction-drafter/pull/6))
 -   Minor: Inserts asterisks in place of Discord token characters to respect user privacy. ([#7](https://github.com/PokimaneSafety/discord-reaction-drafter/pull/7))
