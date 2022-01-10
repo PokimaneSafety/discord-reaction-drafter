@@ -28,7 +28,7 @@
         "prepare": "husky install || exit 0"
     },
     "dependencies": {
-        "cli-progress": "^3.9.1",
+        "cli-progress": "^3.10.0",
         "discord.js": "^12",
         "inquirer": "^8.2.0"
     },
